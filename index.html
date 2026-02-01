@@ -7,40 +7,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="container">
-        <div class="card">
-            <h1>Number Guessing Game</h1>
-            <p class="subtitle">Guess the hidden number</p>
+<main class="container">
+    <div class="card">
+        <h1>Number Guessing Game</h1>
+        <p class="subtitle">Guess the hidden number</p>
 
-            <!-- Difficulty -->
-            <select id="difficulty">
-                <option value="100">Easy (0–100)</option>
-                <option value="500" selected>Medium (0–500)</option>
-                <option value="1000">Hard (0–1000)</option>
-            </select>
+        <!-- Difficulty -->
+        <select id="difficulty">
+            <option value="100">Easy (0–100)</option>
+            <option value="500">Medium (0–500)</option>
+            <option value="1000">Hard (0–1000)</option>
+            <option value="custom">Custom</option>
+        </select>
 
-            <!-- Input -->
-            <input
-                type="number"
-                id="guessInput"
-                placeholder="Enter your guess"
-            >
-
-            <!-- Buttons -->
-            <button id="submitBtn" disabled>Submit</button>
-            <button id="restartBtn">Restart</button>
-            <button id="hintBtn">Show Hints</button>
-
-            <!-- Feedback -->
-            <p id="feedback"></p>
-            <p id="attempts"></p>
-            <p id="bestScore"></p>
-
-            <!-- Hint Box -->
-            <div id="hintBox"></div>
+        <!-- Custom Range -->
+        <div id="customRange" style="display:none;">
+            <input type="number" id="minLimit" placeholder="Min value">
+            <input type="number" id="maxLimit" placeholder="Max value">
         </div>
-    </main>
 
-    <script src="guess.js"></script>
+        <input type="number" id="guessInput" placeholder="Enter your guess">
+
+        <button id="submitBtn" disabled>Submit</button>
+        <button id="restartBtn">Restart</button>
+        <button id="hintBtn">Show Hints</button>
+
+        <p id="feedback"></p>
+        <p id="attempts"></p>
+        <p id="bestScore"></p>
+
+        <div id="hintBox"></div>
+    </div>
+</main>
+
+<script src="guess.js"></script>
 </body>
 </html>
