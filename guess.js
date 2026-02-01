@@ -7,9 +7,11 @@ const attemptsText = document.getElementById("attempts");
 const bestScoreText = document.getElementById("bestScore");
 const difficultySelect = document.getElementById("difficulty");
 const hintBox = document.getElementById("hintBox");
+
 const customRangeBox = document.getElementById("customRange");
 const minLimitInput = document.getElementById("minLimit");
 const maxLimitInput = document.getElementById("maxLimit");
+const startCustomBtn = document.getElementById("startCustomBtn");
 
 let secretNumber;
 let attempts;
@@ -18,13 +20,15 @@ let maxRange = 100;
 let hintHistory = [];
 let hintsVisible = false;
 
+// INIT
 startGame();
 
-/* EVENTS */
+// EVENTS
 submitBtn.addEventListener("click", checkGuess);
 restartBtn.addEventListener("click", startGame);
 difficultySelect.addEventListener("change", handleDifficultyChange);
 hintBtn.addEventListener("click", toggleHints);
+startCustomBtn.addEventListener("click", startCustomGame);
 
 guessInput.addEventListener("input", () => {
     submitBtn.disabled = guessInput.value.trim() === "";
@@ -34,55 +38,54 @@ guessInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !submitBtn.disabled) checkGuess();
 });
 
-/* DIFFICULTY HANDLER */
+// DIFFICULTY CHANGE
 function handleDifficultyChange() {
     if (difficultySelect.value === "custom") {
         customRangeBox.style.display = "block";
-        feedback.textContent = "Set custom limits and restart.";
-        submitBtn.disabled = true;
+        resetUI();
+        feedback.textContent = "Set custom limits and click Start.";
     } else {
         customRangeBox.style.display = "none";
         startGame();
     }
 }
 
-/* GAME INIT */
+// STANDARD GAME
 function startGame() {
-    attempts = 0;
-    hintHistory = [];
-    hintsVisible = false;
-    hintBox.textContent = "";
-    hintBtn.textContent = "Show Hints";
-    guessInput.value = "";
-    submitBtn.disabled = true;
-
-    if (difficultySelect.value === "custom") {
-        minRange = Number(minLimitInput.value);
-        maxRange = Number(maxLimitInput.value);
-
-        if (
-            Number.isNaN(minRange) ||
-            Number.isNaN(maxRange) ||
-            minRange >= maxRange
-        ) {
-            feedback.textContent = "❌ Invalid custom range.";
-            return;
-        }
-    } else {
-        minRange = 0;
-        maxRange = Number(difficultySelect.value);
-    }
-
-    secretNumber =
-        Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
-
+    resetUI();
+    minRange = 0;
+    maxRange = Number(difficultySelect.value);
+    generateSecret();
     feedback.textContent = `Guess a number between ${minRange} and ${maxRange}`;
-    attemptsText.textContent = "";
-
     showBestScore();
 }
 
-/* GAME LOGIC */
+// CUSTOM GAME (CRITICAL FIX)
+function startCustomGame() {
+    const min = Number(minLimitInput.value);
+    const max = Number(maxLimitInput.value);
+
+    if (Number.isNaN(min) || Number.isNaN(max) || min >= max) {
+        feedback.textContent = "❌ Enter valid limits (min < max)";
+        return;
+    }
+
+    resetUI();
+    minRange = min;
+    maxRange = max;
+    generateSecret();
+
+    feedback.textContent = `Guess a number between ${minRange} and ${maxRange}`;
+    showBestScore();
+}
+
+// RANDOM NUMBER (NO BIAS)
+function generateSecret() {
+    secretNumber =
+        Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
+}
+
+// GAME LOGIC
 function checkGuess() {
     const raw = guessInput.value.trim();
     if (raw === "") return;
@@ -115,7 +118,7 @@ function checkGuess() {
     submitBtn.disabled = true;
 }
 
-/* HINT TOGGLE */
+// HINT TOGGLE
 function toggleHints() {
     if (!hintsVisible) {
         hintBox.innerHTML =
@@ -132,7 +135,19 @@ function toggleHints() {
     }
 }
 
-/* BEST SCORE */
+// RESET UI
+function resetUI() {
+    attempts = 0;
+    hintHistory = [];
+    hintsVisible = false;
+    guessInput.value = "";
+    submitBtn.disabled = true;
+    hintBox.textContent = "";
+    hintBtn.textContent = "Show Hints";
+    attemptsText.textContent = "";
+}
+
+// BEST SCORE
 function saveBestScore() {
     const key = `best_${minRange}_${maxRange}`;
     const best = localStorage.getItem(key);
