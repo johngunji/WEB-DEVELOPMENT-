@@ -12,17 +12,18 @@ let secretNumber;
 let attempts;
 let maxRange;
 let hintHistory = [];
+let hintsVisible = false;
 
-// Initialize
+// Initialize game
 startGame();
 
 // Events
 submitBtn.addEventListener("click", checkGuess);
 restartBtn.addEventListener("click", startGame);
 difficultySelect.addEventListener("change", startGame);
-hintBtn.addEventListener("click", showHints);
+hintBtn.addEventListener("click", toggleHints);
 
-// Enable submit only if input has value
+// Enable submit only when input exists
 guessInput.addEventListener("input", () => {
     submitBtn.disabled = guessInput.value.trim() === "";
 });
@@ -39,11 +40,13 @@ function startGame() {
     secretNumber = Math.floor(Math.random() * (maxRange + 1));
     attempts = 0;
     hintHistory = [];
+    hintsVisible = false;
 
     feedback.textContent = `Guess a number between 0 and ${maxRange}`;
     attemptsText.textContent = "";
     bestScoreText.textContent = "";
     hintBox.textContent = "";
+    hintBtn.textContent = "Show Hints";
     guessInput.value = "";
     submitBtn.disabled = true;
 
@@ -87,15 +90,22 @@ function checkGuess() {
     guessInput.focus();
 }
 
-function showHints() {
-    if (hintHistory.length === 0) {
-        hintBox.textContent = "No hints yet.";
-        return;
+function toggleHints() {
+    if (!hintsVisible) {
+        if (hintHistory.length === 0) {
+            hintBox.textContent = "No hints yet.";
+        } else {
+            hintBox.innerHTML =
+                "<strong>Hints:</strong><br>" +
+                hintHistory.map((h, i) => `${i + 1}. ${h}`).join("<br>");
+        }
+        hintBtn.textContent = "Hide Hints";
+        hintsVisible = true;
+    } else {
+        hintBox.textContent = "";
+        hintBtn.textContent = "Show Hints";
+        hintsVisible = false;
     }
-
-    hintBox.innerHTML =
-        "<strong>Hints:</strong><br>" +
-        hintHistory.map((h, i) => `${i + 1}. ${h}`).join("<br>");
 }
 
 function saveBestScore() {
