@@ -1,75 +1,58 @@
-/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Page */
 body {
     min-height: 100vh;
     font-family: "Courier New", Courier, monospace;
     background-image: url('https://cdn3.vectorstock.com/i/1000x1000/15/72/background-from-numbers-vector-3671572.jpg');
     background-size: cover;
-    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Container */
 .container {
     width: 100%;
     padding: 20px;
 }
 
-/* Card */
 .card {
-    background-color: white;
+    background-color: #ffffff;
     max-width: 420px;
-    margin: auto;
     padding: 25px;
     border-radius: 16px;
     text-align: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* Headings */
 h1 {
-    margin-bottom: 10px;
     text-decoration: underline;
+    margin-bottom: 10px;
 }
 
 .subtitle {
-    font-size: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-/* Input */
-label {
-    font-weight: bold;
-}
-
-input {
+select,
+input,
+button {
     width: 100%;
     padding: 12px;
-    margin: 12px 0;
+    margin: 10px 0;
     border-radius: 30px;
     border: 2px solid black;
     font-size: 16px;
     text-align: center;
 }
 
-/* Button */
 button {
-    width: 100%;
-    padding: 12px;
-    border-radius: 30px;
-    border: 2px solid black;
-    background-color: white;
-    font-size: 16px;
-    font-weight: bold;
     cursor: pointer;
+    font-weight: bold;
+    background-color: white;
 }
 
 button:hover {
@@ -77,13 +60,12 @@ button:hover {
     color: white;
 }
 
-/* Feedback */
 #feedback {
     margin-top: 15px;
     font-weight: bold;
 }
 
-#attempts {
-    margin-top: 5px;
+#attempts,
+#bestScore {
     font-size: 14px;
 }
