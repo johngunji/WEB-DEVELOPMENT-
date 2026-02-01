@@ -4,33 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number Guessing Game</title>
-
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main class="container">
         <div class="card">
             <h1>Number Guessing Game</h1>
-            <p class="subtitle">I'm thinking of a number between 0 and 100. Can you guess it?</p>
+            <p class="subtitle">Guess the hidden number</p>
 
-            <label for="guessInput">Enter your guess</label>
+            <!-- Difficulty -->
+            <select id="difficulty">
+                <option value="50">Easy (0–50)</option>
+                <option value="100" selected>Medium (0–100)</option>
+                <option value="200">Hard (0–200)</option>
+            </select>
+
+            <!-- Input -->
             <input
                 type="number"
                 id="guessInput"
-                min="0"
-                max="100"
-                placeholder="0 - 100"
+                placeholder="Enter your guess"
             >
 
+            <!-- Buttons -->
             <button id="submitBtn">Submit</button>
+            <button id="restartBtn">Restart</button>
 
+            <!-- Feedback -->
             <p id="feedback"></p>
             <p id="attempts"></p>
+            <p id="bestScore"></p>
         </div>
     </main>
 
-    <!-- JS -->
     <script src="guess.js"></script>
 </body>
 </html>
