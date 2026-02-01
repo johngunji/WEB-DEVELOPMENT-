@@ -15,15 +15,16 @@
         <!-- Difficulty -->
         <select id="difficulty">
             <option value="100">Easy (0–100)</option>
-            <option value="500">Medium (0–500)</option>
+            <option value="500" selected>Medium (0–500)</option>
             <option value="1000">Hard (0–1000)</option>
             <option value="custom">Custom</option>
         </select>
 
         <!-- Custom Range -->
-        <div id="customRange" style="display:none;">
+        <div id="customRange">
             <input type="number" id="minLimit" placeholder="Min value">
             <input type="number" id="maxLimit" placeholder="Max value">
+            <button id="startCustomBtn">Start Custom Game</button>
         </div>
 
         <input type="number" id="guessInput" placeholder="Enter your guess">
