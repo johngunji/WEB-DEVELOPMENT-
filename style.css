@@ -49,6 +49,18 @@ button {
     text-align: center;
 }
 
+#customRange {
+    display: none;
+}
+
+#customRange input {
+    width: 48%;
+}
+
+#customRange button {
+    width: 100%;
+}
+
 button {
     cursor: pointer;
     font-weight: bold;
@@ -80,9 +92,3 @@ button:disabled {
     font-size: 14px;
     text-align: left;
 }
-#customRange input {
-    width: 48%;
-    display: inline-block;
-}
-
-
