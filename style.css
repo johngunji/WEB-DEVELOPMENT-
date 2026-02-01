@@ -7,7 +7,7 @@
 body {
     min-height: 100vh;
     font-family: "Courier New", Courier, monospace;
-    background-image: url('https://cdn3.vectorstock.com/i/1000x1000/15/72/background-from-numbers-vector-3671572.jpg');
+    background-image: url("https://cdn3.vectorstock.com/i/1000x1000/15/72/background-from-numbers-vector-3671572.jpg");
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -20,7 +20,7 @@ body {
 }
 
 .card {
-    background-color: #ffffff;
+    background-color: white;
     max-width: 420px;
     padding: 25px;
     border-radius: 16px;
@@ -55,9 +55,14 @@ button {
     background-color: white;
 }
 
-button:hover {
+button:hover:not(:disabled) {
     background-color: black;
     color: white;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 #feedback {
@@ -68,4 +73,10 @@ button:hover {
 #attempts,
 #bestScore {
     font-size: 14px;
+}
+
+#hintBox {
+    margin-top: 12px;
+    font-size: 14px;
+    text-align: left;
 }
