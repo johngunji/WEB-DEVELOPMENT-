@@ -14,7 +14,7 @@ let maxRange;
 let hintHistory = [];
 let hintsVisible = false;
 
-// Initialize game
+// Initialize
 startGame();
 
 // Events
@@ -23,7 +23,7 @@ restartBtn.addEventListener("click", startGame);
 difficultySelect.addEventListener("change", startGame);
 hintBtn.addEventListener("click", toggleHints);
 
-// Enable submit only when input exists
+// Enable submit only when input is non-empty
 guessInput.addEventListener("input", () => {
     submitBtn.disabled = guessInput.value.trim() === "";
 });
@@ -44,7 +44,6 @@ function startGame() {
 
     feedback.textContent = `Guess a number between 0 and ${maxRange}`;
     attemptsText.textContent = "";
-    bestScoreText.textContent = "";
     hintBox.textContent = "";
     hintBtn.textContent = "Show Hints";
     guessInput.value = "";
