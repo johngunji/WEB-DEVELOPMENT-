@@ -42,7 +42,9 @@ This project goes beyond a basic guessing game by implementing **state managemen
 ---
 
 ## 🛠️ Project Structure
-
+├── index.html
+├── style.css
+└── guess.js
 
 
 ---
